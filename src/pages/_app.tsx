@@ -1,11 +1,12 @@
 import "../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
-import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { publicProvider } from "wagmi/providers/public";
+import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import useChains from "@hooks/useChains";
 import { MOONRIVER_RPC_URL } from "@contants";
+import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 
 function MyApp({ Component, pageProps }) {
   const chain = useChains();
@@ -20,22 +21,15 @@ function MyApp({ Component, pageProps }) {
     ]
   );
 
-  const { connectors } = getDefaultWallets({
-    appName: "talisman-wallet-evm",
-    chains,
-  });
-
   const wagmiClient = createClient({
     autoConnect: true,
-    connectors,
+    connectors: [new MetaMaskConnector({ chains })],
     provider,
   });
 
   return (
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
-        <Component {...pageProps} />
-      </RainbowKitProvider>
+      <Component {...pageProps} />
     </WagmiConfig>
   );
 }
