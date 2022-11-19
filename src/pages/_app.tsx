@@ -8,7 +8,7 @@ import { publicProvider } from 'wagmi/providers/public';
 const { chains, provider } = configureChains(
   [chain.polygon],
   [
-    jsonRpcProvider({ rpc: () => ({ http: 'https://rpc.ankr.com/moonbeam' }) }),
+    jsonRpcProvider({ rpc: () => ({ http: 'https://rpc.ankr.com/polygon' }) }),
     publicProvider(),
   ]
 );
