@@ -13,21 +13,21 @@ const Home = () => {
       <p className="text-4xl font-bold mt-6">🧞‍♂️ hello talisman frens</p>
       {/* Wallet Connect */}
       <div className="flex flex-col gap-y-3">
-        {isConnected && <div>Connected to {activeConnector.name}</div>}
+        {/* {isConnected && <div>Connected to {activeConnector.name}</div>} */}
         {connectors.map((connector) => (
-          <button
-            key={connector.id}
-            onClick={() => connect({ connector })}
-            disabled={!connector.ready}
-            className="px-4 py-2 rounded-xl shadow-lg bg-blue-200 font-bold hover:scale-105 active:scale-100 active:bg-blue-300 transition-all duration-200"
-          >
-            {!isConnected
-              ? isLoading && pendingConnector?.id == connector.id
-                ? "(connecting) "
-                : "Connect "
-              : "Connected "}
-            {connector.name}
-          </button>
+          <div key={connector.id}>
+            {isLoading && pendingConnector?.id == connector.id && (
+              <div>Connecting...</div>
+            )}
+            <button
+              onClick={() => connect({ connector })}
+              disabled={!connector.ready}
+              className="px-4 py-2 rounded-xl shadow-lg bg-blue-200 font-bold hover:scale-105 active:scale-100 active:bg-blue-300 transition-all duration-200"
+            >
+              {isConnected ? "Connected " : "Connect "}
+              {connector.name}
+            </button>
+          </div>
         ))}
       </div>
     </div>

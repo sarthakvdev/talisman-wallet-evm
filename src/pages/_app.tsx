@@ -4,9 +4,9 @@ import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { publicProvider } from "wagmi/providers/public";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+import { TalismanConnector } from "@talismn/wagmi-connector";
 import useChains from "@hooks/useChains";
 import { MOONRIVER_RPC_URL } from "@contants";
-import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 
 function MyApp({ Component, pageProps }) {
   const chain = useChains();
@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
 
   const wagmiClient = createClient({
     autoConnect: true,
-    connectors: [new MetaMaskConnector({ chains })],
+    connectors: [new TalismanConnector({ chains })],
     provider,
   });
 

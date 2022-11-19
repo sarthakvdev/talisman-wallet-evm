@@ -695,6 +695,11 @@
   dependencies:
     tslib "^2.4.0"
 
+"@talismn/wagmi-connector@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@talismn/wagmi-connector/-/wagmi-connector-0.1.0.tgz#84c35ba5e24198d74f977e5dfd2e019e862634e7"
+  integrity sha512-POHB8+2EKRPXxj6P/r82/Zs9Eq4sBQRatG9o55cQEf6KIU0G34TLNoczTKBni2EBPMNU/wzm6qAnNjy/c6k0/Q==
+
 "@types/bn.js@^4.11.3":
   version "4.11.6"
   resolved "https://registry.yarnpkg.com/@types/bn.js/-/bn.js-4.11.6.tgz#c306c70d9358aaea33cd4eda092a742b9505967c"
