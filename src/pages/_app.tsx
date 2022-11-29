@@ -1,21 +1,32 @@
 import "../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
+
+// Providers
+import { alchemyProvider } from "wagmi/providers/alchemy";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { publicProvider } from "wagmi/providers/public";
-import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+import { ConnectKitProvider, getDefaultClient } from "connectkit";
+import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+
+// Connectors
 import { TalismanConnector } from "@talismn/wagmi-connector";
+import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
+
+// Hooks
 import useChains from "@hooks/useChains";
+import { chain as wagmiChain } from "wagmi";
 import { MOONRIVER_RPC_URL } from "@contants";
 
 function MyApp({ Component, pageProps }) {
   const chain = useChains();
 
   const { chains, provider } = configureChains(
-    [chain.moonriver],
+    [wagmiChain.mainnet],
     [
       jsonRpcProvider({
-        rpc: () => ({ http: MOONRIVER_RPC_URL }),
+        rpc: () => ({ http: "https://rpc.ankr.com/eth" }),
       }),
       publicProvider(),
     ]
@@ -23,7 +34,7 @@ function MyApp({ Component, pageProps }) {
 
   const wagmiClient = createClient({
     autoConnect: true,
-    connectors: [new TalismanConnector({ chains })],
+    connectors: [new MetaMaskConnector({ chains })],
     provider,
   });
 
