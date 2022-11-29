@@ -23,10 +23,10 @@ function MyApp({ Component, pageProps }) {
   const chain = useChains();
 
   const { chains, provider } = configureChains(
-    [wagmiChain.mainnet],
+    [chain.moonriver],
     [
       jsonRpcProvider({
-        rpc: () => ({ http: "https://rpc.ankr.com/eth" }),
+        rpc: () => ({ http: MOONRIVER_RPC_URL }),
       }),
       publicProvider(),
     ]
