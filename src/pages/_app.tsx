@@ -16,7 +16,7 @@ import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 
 // Hooks
 import useChains from "@hooks/useChains";
-import { chain as wagmiChain } from "wagmi";
+// import { chain as wagmiChain } from "wagmi";
 import { MOONRIVER_RPC_URL } from "@contants";
 
 function MyApp({ Component, pageProps }) {
@@ -24,17 +24,20 @@ function MyApp({ Component, pageProps }) {
 
   const { chains, provider } = configureChains(
     [chain.moonriver],
+    // [wagmiChain.goerli],
     [
       jsonRpcProvider({
-        rpc: () => ({ http: MOONRIVER_RPC_URL }),
+        rpc: () => ({
+          http: MOONRIVER_RPC_URL,
+          // http: "https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
+        }),
       }),
-      publicProvider(),
     ]
   );
 
   const wagmiClient = createClient({
     autoConnect: true,
-    connectors: [new MetaMaskConnector({ chains })],
+    connectors: [new TalismanConnector({ chains })],
     provider,
   });
 

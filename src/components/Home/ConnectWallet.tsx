@@ -32,9 +32,9 @@ const ConnectWallet = () => {
               </button>
             ) : (
               <div>
-                <label className="text-zinc-400 block mb-2">
+                <label className="text-zinc-600 block mb-2">
                   Wallet Address Connected on{" "}
-                  <span className="text-zinc-600 font-medium">{chain ? chain.name : ""}</span>
+                  <span className="text-zinc-800 font-bold bg-zinc-200 px-2 py-0.5 rounded-md">{chain ? chain.name : ""}</span>
                 </label>
                 <code className="bg-zinc-700 text-zinc-200 p-4 rounded block mb-4">
                   <pre>{address}</pre>
