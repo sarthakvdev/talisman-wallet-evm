@@ -28,7 +28,7 @@ const ConnectWallet = () => {
                 disabled={!connector.ready}
                 className="px-4 py-2 rounded-lg bg-blue-300 font-bold active:bg-blue-300"
               >
-                {!isLoading ? "Connect Wallet" : "Connecting..."}
+                {!isLoading ? `Connect ${connector.name} Wallet` : "Connecting..."}
               </button>
             ) : (
               <div>

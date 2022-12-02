@@ -40,7 +40,8 @@ function MyApp({ Component, pageProps }) {
     autoConnect: true,
     provider,
     connectors: [
-      new SubWalletConnector({ chains })
+      new SubWalletConnector({ chains }),
+      new TalismanConnector({ chains }),
     ],
   });
 
