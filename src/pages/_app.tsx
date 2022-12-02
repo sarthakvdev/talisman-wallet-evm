@@ -11,6 +11,7 @@ import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 
 // Connectors
 import { TalismanConnector } from "@talismn/wagmi-connector";
+import { SubWalletConnector } from "@wagmi-connector";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 
@@ -37,8 +38,10 @@ function MyApp({ Component, pageProps }) {
 
   const wagmiClient = createClient({
     autoConnect: true,
-    connectors: [new TalismanConnector({ chains })],
     provider,
+    connectors: [
+      new SubWalletConnector({ chains })
+    ],
   });
 
   return (
