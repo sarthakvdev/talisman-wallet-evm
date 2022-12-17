@@ -19,37 +19,39 @@ const ConnectWallet = () => {
 
   return (
     <ClientOnly>
-      <div className="flex flex-col gap-y-3">
-        {connectors.map((connector) => (
-          <div key={connector.id}>
-            {!isConnected ? (
-              <button
-                onClick={() => connect({ connector })}
-                disabled={!connector.ready}
-                className="px-4 py-2 rounded-lg bg-blue-300 font-bold active:bg-blue-300"
-              >
-                {!isLoading ? `Connect ${connector.name} Wallet` : "Connecting..."}
-              </button>
-            ) : (
-              <div>
-                <label className="text-zinc-600 block mb-2">
-                  Wallet Address Connected on{" "}
-                  <span className="text-zinc-800 font-bold bg-zinc-200 px-2 py-0.5 rounded-md">{chain ? chain.name : ""}</span>
-                </label>
-                <code className="bg-zinc-700 text-zinc-200 p-4 rounded block mb-4">
-                  <pre>{address}</pre>
-                </code>
-                <button
-                  onClick={() => disconnect()}
-                  className="px-4 py-2 rounded-lg bg-red-300 font-bold active:bg-red-400"
-                >
-                  disconnect
-                </button>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+      {!isConnected ? (
+        <div className="flex flex-col gap-y-3">
+          {connectors.map((connector) => (
+            <button
+              onClick={() => connect({ connector })}
+              disabled={!connector.ready}
+              className="px-4 py-2 rounded-lg bg-blue-300 font-bold active:bg-blue-300"
+            >
+              {!isLoading
+                ? `Connect ${connector.name} Wallet`
+                : "Connecting..."}
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div>
+          <label className="text-zinc-600 block mb-2">
+            Wallet Address Connected on{" "}
+            <span className="text-zinc-800 font-bold bg-zinc-200 px-2 py-0.5 rounded-md">
+              {chain ? chain.name : ""}
+            </span>
+          </label>
+          <code className="bg-zinc-700 text-zinc-200 p-4 rounded block mb-4">
+            <pre>{address}</pre>
+          </code>
+          <button
+            onClick={() => disconnect()}
+            className="px-4 py-2 rounded-lg bg-red-300 font-bold active:bg-red-400"
+          >
+            disconnect
+          </button>
+        </div>
+      )}
     </ClientOnly>
   );
 };
